@@ -12,7 +12,7 @@ class Solution:
             Next, We start iterating over these substrings:
                 1. We skip whitespaces produced by single 0's
                 2. After that, We know all the rest contain 1's. So, The count of 1's can be given by len(substrings[i])
-                3. Just do res = res + len(substrings[i]) * (len(substrings[i]) + 1)//2
+                3. Just do res = res + len(substrings[i]) * (len(substrings[i]) + 1)//2 ( formul for sum of n natural numbers)
                 4. If the reult is too large for an int, modulo it by 10**9 + 7 and return
             
             That's it :coinflipper: ;)
