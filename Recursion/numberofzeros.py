@@ -5,9 +5,9 @@ def zerochecker(n , count):
     rem = n % 10
 
     if rem == 0:
-        count+=1
-
-    return zerochecker (n//10 , count)
+        return zerochecker(n//10 , count+1)
+    
+    return zerochecker(n//10 , count)
 
 def numberofzeros(n):
     count = 0
