@@ -1,0 +1,61 @@
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+
+        # Logic: Sliding window ez
+
+        '''
+            bs question, not strings attached
+
+            But, Indeed a clever use of sliding window, Not a typical sliding window problem
+
+            The goal is to find the subarray with maximum 1's in it, And deleting one element is allowed (and a compulsion)
+
+            This means, A maximum of one zero is allowed inside a window since its going to be deleted anyways
+
+            Let's proceed,
+
+            zerocount , longestwindow , start = 0 , 0 , 0 setting variables as zeros
+
+            Here begins the window, Keep a watch dont sleep get some coffee and use your walnut brains -_-
+
+            for i in range(len(nums)):
+                i is my pointer which will decide the upper bound of my window
+
+                zerocount+= int(nums[i] == 0)
+                with every i, I will check if the number is 0, if it is I'll incrememnt the zerocount
+
+                while zerocount > 1:
+                Remember the condition, Zerocounts must not exceed one
+
+                    zerocount -= int(nums[start] == 0)
+                    start+=1
+
+                    for this, I will increment the start pointer till the zeros in the window are <=1
+                
+
+                longestwindow = max(longestwindow , i - start)
+                As soon as the while is over , This becomes my ideal window to consider, so I'll compare it with the previous window lengths
+
+                That's it, The sliding window is over
+            
+            One more thing, There's an edgecase which is automatically addressed in this approach, i.e. The compulsison of deleting an element
+
+            It occurs when there are no zeros in the array, Thus the window will scale upto the last number and when we do i - start, Due to array indexing the right length (len(nums) - 1) will be returned, as if an element was deleted
+
+            That's it, :coinflip:
+            It's all Orcam's Razor ;)
+    
+        '''
+
+        zerocount , longestwindow , start = 0 , 0 , 0
+
+        for i in range(len(nums)):
+            zerocount+= int(nums[i] == 0)
+
+            while zerocount > 1:
+                zerocount -= int(nums[start] == 0)
+                start+=1
+            
+            longestwindow = max(longestwindow , i - start)
+
+        return longestwindow
