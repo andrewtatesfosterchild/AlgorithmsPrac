@@ -1,69 +1,62 @@
 class BinaryTree:
-
-    def __init__(self) -> None:
-        pass
-
     class Node:
-        value = 0
-        left = None
-        right = None
-    
-        def Node(self , value):
+        def __init__(self , value): # Corrected node initialization
             self.value = value
+            self.left = None
+            self.right = None
     
-    root = Node(0)
+    def __init__(self): # Corrected Tree initialization
+        self.root = None
+    
 
-    def populate(self):
-        print("Enter the root node: ")
-        value = int(input())
-        root = self.Node(value)
-        self.populate(root)
-    
     def populate(self , node):
-        print("Do you want to enter left of ",node.value)
-        left = bool(input())
+        print(f"Do you want to enter the left child of {node.value}? (y/n)") # Condition check made easier for user
+        left = input().lower() == 'y'
         if left:
-            print("Enter the value of the left of ",node.value)
+            print(f"Enter the value of the left child of {node.value}:")
             value = int(input())
             node.left = self.Node(value)
             self.populate(node.left)
-        
-        print("Do you want to insert to the right of ",node.value)
-        right = bool(input())
+
+        print(f"Do you want to enter the right child of {node.value}? (y/n)") # Same, Condition fixed
+        right = input().lower() == 'y'
         if right:
-            print("Enter the value of the right of ",node.value)
-            value = bool(input())
+            print(f"Enter the value of the right child of {node.value}:")
+            value = int(input())
             node.right = self.Node(value)
             self.populate(node.right)
     
-    def display(self):
-        self.display(self.root, "")
+    ######## Removed Helper Function to populate ########
     
-    def display(self , node , indent):
+    def display(self):
+        self._display(self.root, "")
+    
+    def _display(self , node , indent): # Fixed Polymorphism
         if not node:
             return
         
-        print(indent + node.value)
-        self.display(node.left , indent + "\t")
-        self.display(node.right , indent + "\t")
+        print(indent + str(node.value))
+        self._display(node.left , indent + "\t")
+        self._display(node.right , indent + "\t")
     
     def prettyDisplay(self):
-        self.prettyDisplay(self.root , 0)
+        self._prettyDisplay(self.root, 0)
     
-    def prettyDisplay(self, node , level):
+    def _prettyDisplay(self, node, level):
         if not node:
             return
 
-        self.prettyDisplay(node.right , level + 1)
+        self._prettyDisplay(node.right, level + 1)
 
-        if level!=0:
-            for i in range(level-1):
-                print("|\t\t")
-            print("|-------->",node.value)
+        if level != 0:
+            print("\t" * (level-1) + "|-------->", node.value)
         else:
             print(node.value)
     
 if __name__ == '__main__':
-    BinaryTree = BinaryTree()
-    BinaryTree.populate()
-    BinaryTree.prettyDisplay()
+    binaryTree = BinaryTree()
+    print("Enter the root node:") # It asks for root here now
+    value = int(input())
+    binaryTree.root = binaryTree.Node(value) # Setting root with object
+    binaryTree.populate(binaryTree.root) # Calling populate for insertions
+    binaryTree.prettyDisplay() # Displaying the tree
