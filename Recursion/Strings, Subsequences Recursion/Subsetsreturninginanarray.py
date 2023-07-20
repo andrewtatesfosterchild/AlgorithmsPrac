@@ -1,19 +1,15 @@
- def helper (self , nums , processed):
-        if nums == []:
-            list = []
-            list.append(processed)
-            return list
+def subseqinlist(p, up):
+    if not up:
+        list = []
+        list.append(p)
+        return list
+    
+    char = up[0]
+    left = subseqinlist(p + char , up[1:])
+    right = subseqinlist(p , up[1:])
         
-        num = nums[0]
+    left.extend(right)
 
-        left = self.helper(nums[1:] , processed + [num])
-        right = self.helper(nums[1:] , processed)
+    return left
 
-        left.extend(right)
-
-        return left
-
-def subsets(self, nums):
-    processed = []
-
-    return self.helper(nums, processed)
+print(subseqinlist("" , "abc"))
