@@ -19,7 +19,7 @@ class Solution:
         In case asteroids is empty or a single value
 
 
-        or a in asteroids:
+        for a in asteroids:
             while stack and stack[-1] >= 0 and a < 0: # Collision case
                 collision = stack[-1] + a # colliding
                 if collision <= 0: # Stack dop destroyed
