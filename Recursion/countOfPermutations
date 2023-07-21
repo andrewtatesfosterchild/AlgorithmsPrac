@@ -1,0 +1,13 @@
+def permutations(p, up):
+    if not up:
+        return 1
+
+    count = 0
+    for i in range(len(p) + 1):
+        f = p[0:i]
+        s = p[i:]
+        count = count + permutations(f + [up[0]] + s, up[1:])
+
+    return count
+
+print(permutations([], [1, 2, 3]))
