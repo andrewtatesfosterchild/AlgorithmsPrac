@@ -42,10 +42,10 @@ def backtrackMaze(p , maze , r , c):
     if (c < len(maze[0]) - 1): # Right case
         ans.extend(backtrackMaze(p + 'R' , maze , r , c + 1))
     
-    if (r > 1): # Up case
+    if (r > 0): # Up case
         ans.extend(backtrackMaze(p + 'U' , maze , r - 1 , c))
     
-    if (c > 1): # Left case
+    if (c > 0): # Left case
         ans.extend(backtrackMaze(p + 'L' , maze , r , c - 1))
     
     # Here, I'll leave the current recursion call and turn the maze back to its original way for other calls to work corectly
