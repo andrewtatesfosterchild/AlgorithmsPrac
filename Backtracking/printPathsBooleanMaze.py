@@ -10,6 +10,11 @@ def booleanMaze(maze , p , r , c):
     
     if not maze[r][c]:
         return [] # Kill the recursion in river, Return an empty list here instead of Nothing
+    '''
+        But why empty list has to be returned, why not just do return?
+        Because, see the recursion. It extends the main ans with the paths received from below calls.
+        Can't extend a list with Nonetype, That's it, That's the reason
+    '''
     if r < len(maze) - 1:
         ans.extend(booleanMaze(maze , p + 'D' , r + 1 , c))
     if c < len(maze[0]) - 1:
