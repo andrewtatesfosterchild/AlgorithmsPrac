@@ -18,7 +18,6 @@ class Solution:
         
         In case asteroids is empty or a single value
 
-
         for a in asteroids:
             while stack and stack[-1] >= 0 and a < 0: # Collision case
                 collision = stack[-1] + a # colliding
