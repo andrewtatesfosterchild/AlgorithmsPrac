@@ -9,6 +9,7 @@ class Solution:
         Two asteroids, Same sign, Never collide
         Two asteroids, Different sign, Always collide?
 
+        
         To get a successful collision, The left asteroid must be right moving and the right asteroid must be left moving
 
         Keeping this in mind , We shall do pair matching with stack
