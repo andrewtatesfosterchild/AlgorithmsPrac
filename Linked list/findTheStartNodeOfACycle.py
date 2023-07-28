@@ -57,4 +57,4 @@ class Solution:
             slow = slow.next
             fast = fast.next
 
-        return fast # or slow , upto you , both are same
+        return fast # or slow , upto you , both are equal
