@@ -12,22 +12,21 @@ class Stack:
         print(f"Stack of {n} elements created")
     
     def push(self , item):
-        if self.isFull(item):
+        if self.isFull():
             self.ptr+=1
             self.nums[self.ptr] = item
             return (f"{item} inserted")
-        else:
-            return "Stack Overflow"
+        
     def pop(self):
-        if not self.isEmpty():
+        if self.isEmpty():
             remove = self.nums[self.ptr]
-            self.nums = self.nums[:-1]
+            self.nums[self.ptr] = None
             self.ptr-=1
             return (f"{remove}  removed")
         else:
             return "Stack is empty"
         
-    def isFull(self , item):
+    def isFull(self):
         if self.ptr < len(self.nums) - 1:
             return True
         else:
@@ -40,20 +39,20 @@ class Stack:
             return False
         
     def peek(self):
-        try:
+        if self.isEmpty():
             return self.nums[self.ptr]
-        except:
-            return("Stack is empty")
+        else:
+            return "Stack is empty"
 
 class DynamicStack(Stack):
     def __init__(self, n=10) -> None:
         super().__init__(n)
 
-    def isFull(self , item):
-        if super().isFull():
-            self.temp = [None] * 2 * len(self.nums) 
+    def push(self , item):
+        if not super().isFull():
+            self.temp = [None] * (2 * len(self.nums))
             self.nums.extend(self.temp)
-        super().push(item)
+        return super().push(item)
         
 # stack = Stack(10)
 
@@ -87,4 +86,24 @@ class DynamicStack(Stack):
 
 dstack = DynamicStack(5)
 
+print(dstack.push(1))
+print(dstack.push(2))
+print(dstack.push(3))
+print(dstack.push(4))
+print(dstack.push(5))
 
+print(dstack.push(6)) # Checking the overridden method
+print(dstack.peek()) # Verifying
+
+print(dstack.pop())
+print(dstack.pop())
+print(dstack.pop())
+print(dstack.pop())
+print(dstack.pop())
+print(dstack.pop())
+
+print(dstack.pop()) # Checking stack empty
+
+print(dstack.peek()) # Verifying
+
+print(dstack.nums) # Finally
